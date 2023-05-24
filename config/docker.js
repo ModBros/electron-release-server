@@ -6,7 +6,7 @@ module.exports = {
 
   models: {
     datastore: 'postgresql',
-    migrate: 'alter',
+    migrate: 'safe',
     dataEncryptionKeys: {
       // DEKs should be 32 bytes long, and cryptographically random.
       // You can generate such a key by running the following:
@@ -55,6 +55,17 @@ module.exports = {
     user: process.env['DB_USERNAME'] || process.env['DATABASE_URL'] && process.env['DATABASE_URL'].split('@')[0].split(':')[1].split('/')[2],
     password: process.env['DB_PASSWORD'] || process.env['DATABASE_URL'] && process.env['DATABASE_URL'].split('@')[0].split(':')[2],
     port: process.env['DB_PORT'] || process.env['DATABASE_URL'] && process.env['DATABASE_URL'].split('@')[1].split(':')[1].split('/')[0]
-  }
+  },
+
+  http: {
+    trustProxy: true
+  },
+
+  sockets: {
+    beforeConnect: function(handshake, proceed) {
+      // Send back `true` to allow the socket to connect.
+      return proceed(undefined, true);
+    },
+  },
 
 };
