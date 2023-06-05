@@ -211,7 +211,7 @@ angular.module('app.core.data.service', [
         version_for_request.channel = version_for_request.channel.name;
         version_for_request.flavor = version_for_request.flavor.name;
 
-        return $http.post(
+        return $http.put(
             '/api/version/' + version.id,
             version_for_request
           )
@@ -455,7 +455,7 @@ angular.module('app.core.data.service', [
           throw new Error('The passed asset object must have been submitted to the database in order to be updated');
         }
 
-        return $http.post('/api/asset/' + asset.id, asset)
+        return $http.put('/api/asset/' + asset.id, asset)
           .then(function(response) {
             Notification.success('Asset Updated Successfully.');
 
