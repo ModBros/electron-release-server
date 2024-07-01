@@ -56,7 +56,7 @@ module.exports = {
       //    'No platform specified and detecting one was unsuccessful.'
       //  );
       //}
-      platforms = PlatformService.sanitize([PlatformService.WINDOWS]);
+      platforms = PlatformService.sanitize([PlatformService.WINDOWS_32]);
     } else {
       platforms = PlatformService.sanitize(platforms);
     }
