@@ -49,13 +49,14 @@ module.exports = {
 
     // Detect platform from useragent
     if (!platforms) {
-      platforms = PlatformService.detectFromRequest(req);
-
-      if (!platforms) {
-        return res.serverError(
-          'No platform specified and detecting one was unsuccessful.'
-        );
-      }
+      //platforms = PlatformService.detectFromRequest(req);
+      //
+      //if (!platforms) {
+      //  return res.serverError(
+      //    'No platform specified and detecting one was unsuccessful.'
+      //  );
+      //}
+      platforms = PlatformService.sanitize([PlatformService.WINDOWS]);
     } else {
       platforms = PlatformService.sanitize(platforms);
     }
